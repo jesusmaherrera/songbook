@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from songs.views import SongDetailView
+from songs.views import SongDetailView, SongList
 urlpatterns = [
+	url(r'^$', SongList.as_view(), name='song-list'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^(?P<pk>[-\w]+)/$', SongDetailView.as_view(), name='song-detail'),
+
 ]
