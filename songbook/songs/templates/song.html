@@ -9,11 +9,18 @@
 <div id="my-tab-content" class="tab-content">
   <div class="tab-pane active" id="vista">
       <h2>{{ object.name }}</h2>
-	<p>{{ formated_song|safe }}</p>
+			<p>{{ formated_song|safe }}</p>
   </div>
-  <div class="tab-pane active" id="edicion">
-     <h2>{{ object.name }}</h2>
-		<p>{{ object.lyrics }}</p>
+  <div class="tab-pane" id="edicion">
+  	{{ form.errors }}
+     <form action="{{ action }}" method="post">
+         {% csrf_token %}
+         {{ form.name.label }} <br>
+         {{ form.name }} <br>
+         {{ form.lyrics.label }} <br>
+         {{ form.lyrics }} <br>
+         <input type="submit" value="Submit" />
+     </form>
 	</div>
 </div>
 {% endblock %}

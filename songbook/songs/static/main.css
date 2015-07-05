@@ -4,3 +4,7 @@
   margin: -attr(height);
   line-height: 2.5em;
 }
+
+.content{
+	margin:1em;
+}

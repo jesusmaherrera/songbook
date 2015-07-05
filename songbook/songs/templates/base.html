@@ -60,7 +60,10 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-{% block content %}Principal{% endblock %}
+<div class="row content" >
+{% block content %}
+{% endblock %}
+</div>
 	
 	<link rel='stylesheet' href='{% static "normalize.css" %}'/>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
