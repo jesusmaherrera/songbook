@@ -2,27 +2,30 @@
 {% load staticfiles %}
 {% block title %}Principal{% endblock %}
 {% block content %}
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#vista" data-toggle="tab">Vista</a></li>
-  <li role="presentation"><a href="#edicion" data-toggle="tab">Edición</a></li>
-</ul>
-<div id="my-tab-content" class="tab-content">
-  <div class="tab-pane active" id="vista">
-      <h2>{{ object.name }}</h2>
-			<p>{{ formated_song|safe }}</p>
+{{ form.errors }}
+<form action="{{ action }}" id='myform' method="post">{% csrf_token %}
+<input type="submit" value="Submit" id='savebtn'/>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#vista" class='vista_btn' data-toggle="tab">Vista</a></li>
+    <li role="presentation"><a href="#edicion" data-toggle="tab">Edición</a></li>
+  </ul>
+  <div id="my-tab-content" class="tab-content">
+    <div class="tab-pane active" id="vista">
+        <h2>{{ object.name }}</h2>
+  			<p class='lyrics_formated'>
+        {{ form.lyrics_formated.value|safe }}
+        </p>
+    </div>
+    <div class="tab-pane" id="edicion">
+       {{ form.lyrics_formated }}
+       {{ form.name.label }} <br>
+       {{ form.name }} <br>
+       {{ form.lyrics.label }} <br>
+       {{ form.lyrics }} <br>
+       
+  	</div>
   </div>
-  <div class="tab-pane" id="edicion">
-  	{{ form.errors }}
-     <form action="{{ action }}" method="post">
-         {% csrf_token %}
-         {{ form.name.label }} <br>
-         {{ form.name }} <br>
-         {{ form.lyrics.label }} <br>
-         {{ form.lyrics }} <br>
-         <input type="submit" value="Submit" />
-     </form>
-	</div>
-</div>
+</form>
 {% endblock %}
 
 {% block css %}
