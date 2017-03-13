@@ -24,7 +24,6 @@ $("#id_lyrics").change(function(){
 		$("#id_lyrics_formated").val($("p.lyrics_formated").html())
 	})
 })
-
 $("#id_lyrics_edit_view").change(function(){
 	var lines = $("#id_lyrics_edit_view").val().split(/\n/)
 	var new_lines = ''
@@ -59,14 +58,17 @@ $("#id_lyrics_edit_view").change(function(){
 
 			// Sacar los indices de cada nota
 			var last_note_index = 0
+			var notas_length = 0
 			for (index in notes){
-				note_index = notes_line.indexOf(notes[index], last_note_index)+1
+				note_index = notes_line.indexOf(notes[index], last_note_index)
 				last_note_index =  note_index + notes[index].length
+				notas_length += notes[index].length
 				notes_dic.push({
 					'note':notes[index],
-					'index':note_index
+					'index':note_index+1
 				})
 			}
+
 			notes = []
 
 			var extra_characters = 0
@@ -75,9 +77,7 @@ $("#id_lyrics_edit_view").change(function(){
 				note = notes_dic[index]
 				new_index = note.index + extra_characters
 				new_line = new_line.slice(0,new_index) + '['+ note.note +']'+new_line.slice(new_index)
-				extra_characters += note.note.length
-				
-				extra_characters += 2
+				extra_characters += note.note.length + 2
 			}
 			new_lines += new_line + '\n'
 			notes_line = ''

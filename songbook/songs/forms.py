@@ -10,6 +10,6 @@ class SongForm(ModelForm):
 		fields = ('name', 'lyrics','lyrics_formated','lyrics_edit_view')
 		widgets = {
             'lyrics': HiddenInput(),
-            'lyrics_edit_view': Textarea(attrs={'cols': 120, 'rows': 20}),
+            'lyrics_edit_view': Textarea(attrs={'cols': 120, 'rows': 20, 'style':'font-family:courier',}),
             'lyrics_formated': HiddenInput(),
         }
