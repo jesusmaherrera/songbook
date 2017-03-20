@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from songs.views import SongDetailView, SongList, SongFormView, SongUpdate
+from songs.views import SongDetailView, SongList, SongFormView, SongUpdate, SongListUpdate, SongListCreate
 urlpatterns = [
 	url(r'^$', SongList.as_view(), name='song-list'),
 	url(r'^songs/$', SongList.as_view(), name='song-list'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^song/$', SongFormView.as_view(), name='song-form'),
-    url(r'^song/(?P<pk>[-\w]+)/', SongUpdate.as_view(), name='song-form'),
+    url(r'^song/edit/(?P<pk>[-\w]+)/', SongUpdate.as_view(), name='song-form'),
+    url(r'^song/(?P<pk>[-\w]+)/$', SongDetailView.as_view(), name='song-detail'),
 
-    url(r'^(?P<pk>[-\w]+)/$', SongDetailView.as_view(), name='song-detail'),
+    url(r'^songlist/edit/(?P<pk>[-\w]+)/', SongListUpdate.as_view(), name='songlist-update'),
+    url(r'^songlist/$', SongListCreate.as_view(), name='songlist-create'),
 
 ]

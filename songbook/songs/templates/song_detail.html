@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Principal{% endblock %}
+{% block content %}
+<div class="text-center">
+  <h1>{{ object.name }}</h1>
+  {{ object.lyrics_formated|safe }}
+</div>
+{% endblock %}
+
+{% block css %}
+  <link rel='stylesheet' href='{% static "main.css" %}'/>
+{% endblock %}
+{% block js %}
+  <script src="{% static 'main.js' %}?v=1"></script>
+{% endblock %}

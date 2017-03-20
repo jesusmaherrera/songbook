@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Lista{% endblock %}
+{% block content %}
+{{ form.errors }}
+<form action="{{ action }}" id='myform' method="post">{% csrf_token %}
+  <input type="submit" value="Guardar" id='savebtn'/>
+  {{ formset.management_form }}
+  {{ formset.non_form_errors }}
+  <div class="row hidden-xs">
+      <div class="col-md-10">
+        <label>Cancion</label>
+      </div>
+      <div class="col-md-2">
+        <label>Cancion</label>
+      </div>
+  </div>
+  {% for form in formset %}
+    {{ form.id }}
+    {{ form.errors }}
+    <div class="row inline {{ formset.prefix }}">
+      <div class="col-sm-10">
+        {{ form.song }}
+      </div>  
+    <div class="col-sm-2">
+      {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</form>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block js %}
+	<script src="{% static 'js/jquery.formset.js' %}"></script>
+    <script>
+      $(".inline.{{ formset.prefix }}").formset({
+          prefix: "{{ formset.prefix }}",
+          addText: 'Agregar',
+          deleteText: 'Eliminar',
+          deleteCssClass: 'btn btn-default btn-xs',
+        })
+    </script>
+{% endblock %}

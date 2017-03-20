@@ -4,7 +4,10 @@
 {% block content %}
 <ul>
 	{% for object in object_list %}
-		<li><a href="/song/{{object.id}}/">{{ object.name }}</a></li>
+		<li>
+			<a href="/song/{{object.id}}/">{{ object.name }}</a>
+			<a href="/song/edit/{{object.id}}/">Editar</a>
+		</li>
 	{% endfor %}
 </ul>
 {% endblock %}

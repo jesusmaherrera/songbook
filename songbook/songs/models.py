@@ -12,6 +12,19 @@ class Song(models.Model):
     def __str__(self):
         return u'%s'% self.name
 
+class SongList(models.Model):
+    name = models.CharField('Nombre', max_length=200)
+    
+    def __str__(self):
+        return u'%s'% self.name
+
+class SongListItem(models.Model):
+    songlist = models.ForeignKey(SongList)
+    song = models.ManyToManyField(Song)
+    
+    def __str__(self):
+        return u'%s'% self.song
+
 class Tag(models.Model):
     name = models.CharField('Nombre', max_length=200)
     song = models.ManyToManyField('Song')
