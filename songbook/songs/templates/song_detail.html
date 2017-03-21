@@ -2,14 +2,20 @@
 {% load staticfiles %}
 {% block title %}Principal{% endblock %}
 {% block content %}
+
 <div class="text-center">
-  <h1>{{ object.name }}</h1>
+  <h1 >
+  	{{ object.name }} 
+  	<a href="/song/edit/{{object.id}}/" class="hidden-xs">
+  		<i class="glyphicon glyphicon-pencil"></i>
+  	</a>
+  </h1>
   {{ object.lyrics_formated|safe }}
 </div>
 {% endblock %}
 
 {% block css %}
-  <link rel='stylesheet' href='{% static "main.css" %}'/>
+  <link rel='stylesheet' href='{% static "main.css"%}?v=1'/>
 {% endblock %}
 {% block js %}
   <script src="{% static 'main.js' %}?v=1"></script>

@@ -4,14 +4,22 @@
 {% block content %}
 {{ form.errors }}
 <form action="{{ action }}" id='myform' method="post">{% csrf_token %}
-  <input type="submit" value="Guardar" id='savebtn'/>
-  <br>
+  <input type="submit" value="Guardar" id='savebtn' class="btn btn-default"/>
+  <br/>
+  <br/>
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#vista" class='vista_btn' data-toggle="tab">Vista</a></li>
-    <li role="presentation"><a href="#edicion" data-toggle="tab">Edición</a></li>
+    <li role="presentation" class="active"><a href="#edicion" data-toggle="tab">Edición</a></li>
+    <li role="presentation"><a href="#vista" class='vista_btn' data-toggle="tab">Vista Previa</a></li>
   </ul>
   <div id="my-tab-content" class="tab-content">
-    <div class="tab-pane active" id="vista">
+    <div class="tab-pane active" id="edicion">
+      {{ form.name.label }} <br>
+      {{ form.name }} <br>
+      Contenido
+      <br>
+      {{ form.lyrics_edit_view }}
+    </div>
+    <div class="tab-pane" id="vista">
         <h2 class="text-center">{{ object.name }}</h2>
   			<p class='lyrics_formated text-center'>
         {{ form.lyrics_formated.value|safe }}
@@ -19,19 +27,12 @@
         {{ form.lyrics_formated }}
         {{ form.lyrics }}
     </div>
-    <div class="tab-pane" id="edicion">
-      {{ form.name.label }} <br>
-      {{ form.name }} <br>
-      Contenido
-      <br>
-      {{ form.lyrics_edit_view }}
-    </div>
   </div>
 </form>
 {% endblock %}
 
 {% block css %}
-	<link rel='stylesheet' href='{% static "main.css" %}'/>
+	<link rel='stylesheet' href='{% static "main.css"%}?v=2'/>
 {% endblock %}
 {% block js %}
 	<script src="{% static 'main.js' %}?v=1"></script>
